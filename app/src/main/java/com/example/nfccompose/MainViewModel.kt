@@ -87,6 +87,8 @@ class MainViewModel: AndroidViewModel {
             postNFCStatus(NFCStatus.Process)
             val stringBuilder: StringBuilder = StringBuilder()
             val id: ByteArray? = tag?.id
+            val serialNumber: String = byteArrayToHexString(id)
+            stringBuilder.append("Numero de Serie : $serialNumber \n")
             stringBuilder.append("Tag ID : ${getHex(id!!)} \n")
             stringBuilder.append("Tag ID (dec): ${getDec(id)} \n")
             stringBuilder.append("Tag ID (reversed): ${getReversed(id)} \n")
@@ -128,6 +130,14 @@ class MainViewModel: AndroidViewModel {
             postNFCStatus(NFCStatus.Read)
             liveTag.emit("${getDateTimeNow()} \n ${stringBuilder}")
         }
+    }
+
+    fun byteArrayToHexString(array: ByteArray?): String {
+        val result = StringBuilder()
+        array?.forEach { byte ->
+            result.append(String.format("%02X", byte))
+        }
+        return result.toString()
     }
 
     public fun updateNFCStatus(status: NFCStatus) {
