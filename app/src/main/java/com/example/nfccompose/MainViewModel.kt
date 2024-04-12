@@ -86,7 +86,7 @@ class MainViewModel: AndroidViewModel {
             Log.d(TAG, "readTag(${tag} ${tag?.techList})")
             postNFCStatus(NFCStatus.Process)
             val stringBuilder: StringBuilder = StringBuilder()
-            val id: ByteArray? = tag?.getId()
+            val id: ByteArray? = tag?.id
             stringBuilder.append("Tag ID : ${getHex(id!!)} \n")
             stringBuilder.append("Tag ID (dec): ${getDec(id)} \n")
             stringBuilder.append("Tag ID (reversed): ${getReversed(id)} \n")

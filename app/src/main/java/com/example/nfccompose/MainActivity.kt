@@ -37,7 +37,7 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 
-class MainActivity : AppCompatActivity, NfcAdapter.ReaderCallback {
+class MainActivity : FragmentActivity, NfcAdapter.ReaderCallback {
 
     companion object {
         private val TAG = MainActivity::class.java.getSimpleName()
@@ -55,7 +55,7 @@ class MainActivity : AppCompatActivity, NfcAdapter.ReaderCallback {
             var text by remember {
                 mutableStateOf("")
             }
-            var activityCompat: AppCompatActivity = this
+            val activityCompat: FragmentActivity = this
             Column {
                 Button(onClick = {
                     onCheckedChanged(true)
@@ -96,6 +96,7 @@ class MainActivity : AppCompatActivity, NfcAdapter.ReaderCallback {
                 }) {
                     Text(text = "presionar")
                 }
+                Text(text = text)
             }
 
         }
